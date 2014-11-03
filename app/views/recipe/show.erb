@@ -1,0 +1,21 @@
+<div class="container">
+  <h1><%=@recipe.name%></h1>
+
+  <% if @recipe%>
+    <ul>
+      <li>Ingredients: <%=@recipe.ingredients%></li>
+      <li>Instructions: <%=@recipe.instructions%></li>
+    </ul>
+      <%end%>
+
+  <% if session[:user_id] == @recipe.cookbook.user_id%>
+          <form action="/recipe/<%=@recipe.id%>" method="POST">
+            <input name="_method" type="hidden" value="delete">
+            <input type="submit" value="Delete Recipe">
+          </form>
+      <% end %>
+
+  <p><a href="/logout">Logout</a></p>
+  <p><a href="/cookbooks/<%=@recipe.cookbook_id%>/recipes"> My Recipes </a></p>
+</div>
+

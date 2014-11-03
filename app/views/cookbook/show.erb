@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>My Cookbooks</h1>
+
+<form action="/cookbook/new" method="POST">
+  <ul>
+    <li><input id="cookbook_name" type="text" name="name" placeholder = "Cookbook name" /></li>
+    <li><input type="submit" value="New Book"></li>
+  </ul>
+</form>
+
+  <% if @cookbooks%>
+    <%@cookbooks.each do |cookbook| %>
+    <ul>
+      <li><a href="/cookbooks/<%=cookbook.id%>/recipes"><%=cookbook.name%></a></li>
+    </ul>
+      <%end%>
+  <%end%>
+
+  <h1>Everyone's Cookbooks</h1>
+  <%if @all_cookbooks%>
+    <%@all_cookbooks.each do |cookbook| %>
+      <ul>
+        <li><a href="/cookbooks/<%=cookbook.id%>/recipes"><%=cookbook.name%></a></li>
+      </ul>
+        <%end%>
+    <%end%>
+
+  <p><a href="/logout">Logout</a></p>
+</div>

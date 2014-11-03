@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>My Recipes</h1>
+
+  <% if @recipes%>
+    <%@recipes.each do |recipe| %>
+    <ul>
+      <li><a href="/cookbooks/<%=recipe.cookbook_id%>/recipes/<%=recipe.id%>"><%=recipe.name%></a></li>
+    </ul>
+      <%end%>
+      <%end%>
+
+  <% if session[:user_id] == @cookbook.user_id%>
+  <form action="/cookbook/<%=@cookbook.id%>" method="POST">
+    <ul>
+      <li><input id="recipe_name" type="text" name="name" placeholder = "Name" /></li>
+      <li><input id="recipe_ingredients" type="text" name="ingredients" placeholder = "ingredients" /></li>
+      <li><input id="recipe_instructions" type="text" name="instructions" placeholder = "Instructions" /></li>
+      <input type="hidden" name="cookbook_id" value="<%=@cookbook.id%>"
+      <li><input type="submit" value="Create Recipe!"></li>
+    </ul>
+  </form>
+
+  <%end%>
+  <p><a href="/logout">Logout</a></p>
+  <p><a href="/cookbooks"> All Cookbooks </a></p>
+</div>
